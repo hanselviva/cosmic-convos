@@ -4,38 +4,38 @@ import type { MenuProps } from "antd";
 import { Menu } from "antd";
 
 const items: MenuProps["items"] = [
-	{
-		label: "Navigation One",
-		key: "mail",
-		icon: <MailOutlined />,
-	},
-	{
-		label: "Navigation Two",
-		key: "app",
-		icon: <AppstoreOutlined />,
-	},
-	{
-		label: "Navigation Three",
-		key: "alipay",
-	},
+  {
+    label: "Navigation One",
+    key: "mail",
+    icon: <MailOutlined />,
+  },
+  {
+    label: "Navigation Two",
+    key: "app",
+    icon: <AppstoreOutlined />,
+  },
+  {
+    label: "Navigation Three",
+    key: "alipay",
+  },
 ];
 
 const Navigation: React.FC = () => {
-	const [current, setCurrent] = useState("mail");
+  const [current, setCurrent] = useState("mail");
 
-	const onClick: MenuProps["onClick"] = (e) => {
-		console.log("click ", e);
-		setCurrent(e.key);
-	};
+  const onClick: MenuProps["onClick"] = (e) => {
+    console.log("click ", e);
+    setCurrent(e.key);
+  };
 
-	return (
-		<Menu
-			onClick={onClick}
-			selectedKeys={[current]}
-			mode="horizontal"
-			items={items}
-		/>
-	);
+  return (
+    <Menu
+      onClick={onClick}
+      selectedKeys={[current]}
+      mode="horizontal"
+      items={items}
+    />
+  );
 };
 
 export default Navigation;

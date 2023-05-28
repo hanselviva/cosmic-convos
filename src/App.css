@@ -4,3 +4,16 @@ secondary: #001529
 accent: #17A09A, #DF4E38
 
 */
+
+.chatbox-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatbox-container {
+  border-color: #f2bd27;
+  width: 200px;
+  height: 300px;
+}

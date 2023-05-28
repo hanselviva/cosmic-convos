@@ -1,8 +1,10 @@
 import React from "react";
+import "./App.css";
 import { MoonStarsFill, BrightnessHighFill } from "react-bootstrap-icons";
 import { Layout, theme, Button } from "antd";
 import Navigation from "./components/Navigation";
 import logo from "./assets/universe.svg";
+import ChatBox from "./components/ChatBox";
 
 interface Props {
   isDarkMode: boolean;
@@ -20,28 +22,33 @@ const App: React.FC<Props> = ({ isDarkMode, handleToggleTheme }) => {
     <Layout className="layout">
       <Header
         style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
           background: colorBgContainer,
         }}
       >
-        <img
-          src={logo}
-          aria-label="logo"
-          style={{ height: "4rem", marginRight: "1rem" }}
-        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <img
+            src={logo}
+            aria-label="logo"
+            style={{ height: "4rem", marginRight: "1rem" }}
+          />
+          <h1>Cosmic Conversations</h1>
+          <Button onClick={handleToggleTheme}>
+            {isDarkMode ? (
+              <BrightnessHighFill color={colorPrimary} />
+            ) : (
+              <MoonStarsFill color={colorPrimary} />
+            )}
+          </Button>
+        </div>
 
         <Navigation />
-
-        <Button onClick={handleToggleTheme}>
-          {isDarkMode ? (
-            <BrightnessHighFill color={colorPrimary} />
-          ) : (
-            <MoonStarsFill color={colorPrimary} />
-          )}
-        </Button>
       </Header>
 
       <Content
@@ -51,7 +58,7 @@ const App: React.FC<Props> = ({ isDarkMode, handleToggleTheme }) => {
           color: colorText,
         }}
       >
-        This is a content
+        <ChatBox />
       </Content>
 
       <Footer style={{ textAlign: "center" }}>
