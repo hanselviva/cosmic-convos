@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
@@ -42,18 +42,23 @@ const darkTheme: ThemeOptions = createTheme({
 });
 
 export const ThemeWrapper: React.FC = () => {
+  const [isDark, setIsDark] = useState<boolean>(true);
+  const toogleTheme = (isDark) => {
+    setTheme(!isDark);
+  };
+
   return (
     <>
-      <App />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </>
   );
 };
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <ThemeWrapper />
-    </ThemeProvider>
+    <ThemeWrapper />
   </React.StrictMode>
 );
