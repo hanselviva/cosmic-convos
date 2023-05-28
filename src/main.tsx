@@ -41,10 +41,15 @@ const darkTheme: ThemeOptions = createTheme({
   },
 });
 
-export const ThemeContext = createContext({
+interface ContextType {
+  isDark: boolean;
+  setIsDark: any;
+}
+
+export const ThemeContext = createContext<ContextType>({
   isDark: true,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setIsDark: () => {},
+  setIsDark: undefined,
 });
 
 export const ThemeWrapper: React.FC = () => {

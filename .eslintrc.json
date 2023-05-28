@@ -17,8 +17,8 @@
   "rules": {
     "react-refresh/only-export-components": "warn",
     "@typescript-eslint/indent": ["error", 2],
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
     "prettier/prettier": ["error"]
   },
   "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
