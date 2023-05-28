@@ -1,29 +1,10 @@
-import { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { theme, ConfigProvider } from "antd";
-const { defaultAlgorithm, darkAlgorithm } = theme;
-
-const Main: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const handleToggleTheme = () => {
-    setIsDarkMode((previousValue) => !previousValue);
-  };
-  return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#F29B13",
-        },
-        algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
-      }}
-    >
-      <App isDarkMode={isDarkMode} handleToggleTheme={handleToggleTheme} />
-    </ConfigProvider>
-  );
-};
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <Main />
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );

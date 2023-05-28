@@ -1,74 +1,36 @@
 import React from "react";
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
 import "./App.css";
-import { MoonStarsFill, BrightnessHighFill } from "react-bootstrap-icons";
-import { Layout, theme, Button } from "antd";
-import UniverseMenu from "./components/UniverseMenu";
-import logo from "./assets/universe.svg";
-import ChatBox from "./components/ChatBox";
 
-interface Props {
-  isDarkMode: boolean;
-  handleToggleTheme: () => void;
-}
-
-const { Header, Content, Footer } = Layout;
-
-const App: React.FC<Props> = ({ isDarkMode, handleToggleTheme }) => {
-  const {
-    token: { colorBgContainer, colorText, colorPrimary },
-  } = theme.useToken();
+function App() {
+  const [count, setCount] = useState(0);
 
   return (
-    <div
-      className="app-container"
-      style={{
-        background: colorBgContainer,
-      }}
-    >
-      <div className="App">
-        <Layout>
-          <Header
-            style={{
-              background: colorBgContainer,
-              height: "auto",
-            }}
-          >
-            <div className="title">
-              <img
-                src={logo}
-                aria-label="logo"
-                style={{ width: "4rem", marginRight: "1rem" }}
-              />
-              <h1>Cosmic Conversations</h1>
-              <Button onClick={handleToggleTheme}>
-                {isDarkMode ? (
-                  <BrightnessHighFill color={colorPrimary} />
-                ) : (
-                  <MoonStarsFill color={colorPrimary} />
-                )}
-              </Button>
-            </div>
-
-            <UniverseMenu />
-          </Header>
-
-          <Content
-            style={{
-              padding: "0 50px",
-              background: colorBgContainer,
-              color: colorText,
-            }}
-          >
-            <ChatBox />
-          </Content>
-
-          <Footer style={{ textAlign: "center" }}>
-            Cosmic Conversations ©2023 Created by HanselV
-          </Footer>
-        </Layout>
+    <>
+      <div>
+        <a href="https://vitejs.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
       </div>
-    </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
   );
-};
+}
 
 export default App;
