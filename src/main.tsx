@@ -43,8 +43,8 @@ const darkTheme: ThemeOptions = createTheme({
 
 export const ThemeWrapper: React.FC = () => {
   const [isDark, setIsDark] = useState<boolean>(true);
-  const toogleTheme = (isDark) => {
-    setTheme(!isDark);
+  const toogleTheme = (isDark: boolean) => {
+    setIsDark(!isDark);
   };
 
   return (

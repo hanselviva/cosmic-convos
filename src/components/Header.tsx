@@ -9,6 +9,7 @@ import {
   Container,
   Button,
   MenuItem,
+  Grid,
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -33,7 +34,10 @@ const Header: React.FC = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src={universe} height="150px" />
+          <Grid sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
+            <img src={universe} height="150px" />
+          </Grid>
+
           <Typography
             variant="h6"
             noWrap
@@ -89,6 +93,28 @@ const Header: React.FC = () => {
             </Menu>
           </Box>
 
+          <Grid sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
+            <img src={universe} height="150px" />
+          </Grid>
+
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            Cosmic Conversations
+          </Typography>
           <Box
             sx={{
               flexGrow: 1,
@@ -106,9 +132,7 @@ const Header: React.FC = () => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Button>theme</Button>
-          </Box>
+          <Button>theme</Button>
         </Toolbar>
       </Container>
     </AppBar>
