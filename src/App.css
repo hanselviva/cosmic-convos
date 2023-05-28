@@ -5,6 +5,28 @@ accent: #17A09A, #DF4E38
 
 */
 
+body {
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  max-height: 768px;
+  max-width: 1366px;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .chatbox-wrapper {
   width: 100vw;
   height: 100vh;

@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { MoonStarsFill, BrightnessHighFill } from "react-bootstrap-icons";
 import { Layout, theme, Button } from "antd";
-import Navigation from "./components/Navigation";
+import UniverseMenu from "./components/UniverseMenu";
 import logo from "./assets/universe.svg";
 import ChatBox from "./components/ChatBox";
 
@@ -19,52 +19,55 @@ const App: React.FC<Props> = ({ isDarkMode, handleToggleTheme }) => {
   } = theme.useToken();
 
   return (
-    <Layout className="layout">
-      <Header
-        style={{
-          background: colorBgContainer,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <img
-            src={logo}
-            aria-label="logo"
-            style={{ height: "4rem", marginRight: "1rem" }}
-          />
-          <h1>Cosmic Conversations</h1>
-          <Button onClick={handleToggleTheme}>
-            {isDarkMode ? (
-              <BrightnessHighFill color={colorPrimary} />
-            ) : (
-              <MoonStarsFill color={colorPrimary} />
-            )}
-          </Button>
-        </div>
+    <div
+      className="app-container"
+      style={{
+        background: colorBgContainer,
+      }}
+    >
+      <div className="App">
+        <Layout>
+          <Header
+            style={{
+              background: colorBgContainer,
+              height: "auto",
+            }}
+          >
+            <div className="title">
+              <img
+                src={logo}
+                aria-label="logo"
+                style={{ width: "4rem", marginRight: "1rem" }}
+              />
+              <h1>Cosmic Conversations</h1>
+              <Button onClick={handleToggleTheme}>
+                {isDarkMode ? (
+                  <BrightnessHighFill color={colorPrimary} />
+                ) : (
+                  <MoonStarsFill color={colorPrimary} />
+                )}
+              </Button>
+            </div>
 
-        <Navigation />
-      </Header>
+            <UniverseMenu />
+          </Header>
 
-      <Content
-        style={{
-          padding: "0 50px",
-          background: colorBgContainer,
-          color: colorText,
-        }}
-      >
-        <ChatBox />
-      </Content>
+          <Content
+            style={{
+              padding: "0 50px",
+              background: colorBgContainer,
+              color: colorText,
+            }}
+          >
+            <ChatBox />
+          </Content>
 
-      <Footer style={{ textAlign: "center" }}>
-        Cosmic Conversations ©2023 Created by HanselV
-      </Footer>
-    </Layout>
+          <Footer style={{ textAlign: "center" }}>
+            Cosmic Conversations ©2023 Created by HanselV
+          </Footer>
+        </Layout>
+      </div>
+    </div>
   );
 };
 
