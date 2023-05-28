@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
@@ -41,24 +41,28 @@ const darkTheme: ThemeOptions = createTheme({
   },
 });
 
+export const ThemeContext = createContext({
+  isDark: true,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setIsDark: () => {},
+});
+
 export const ThemeWrapper: React.FC = () => {
   const [isDark, setIsDark] = useState<boolean>(true);
-  const toogleTheme = (isDark: boolean) => {
-    setIsDark(!isDark);
-  };
 
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <CssBaseline />
-        <App />
+        <ThemeContext.Provider value={{ isDark, setIsDark }}>
+          <App />
+        </ThemeContext.Provider>
       </ThemeProvider>
     </>
   );
 };
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <ThemeWrapper />
-  </React.StrictMode>
-);
+const container = document.getElementById("root");
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = ReactDOM.createRoot(container!);
+root.render(<ThemeWrapper />);

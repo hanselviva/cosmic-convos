@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import {
   AppBar,
   Box,
@@ -11,13 +11,18 @@ import {
   MenuItem,
   Grid,
 } from "@mui/material";
-
+// import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import universe from "../assets/universe.svg";
+import { SunFill, MoonStarsFill } from "react-bootstrap-icons";
+import { ThemeContext } from "../main";
 
 const pages = ["Harry Potter", "Lord of the Rings", "Star Wars"];
 
 const Header: React.FC = () => {
+  const { isDark, setIsDark } = useContext(ThemeContext);
+  //   const activeTheme = useTheme();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -28,6 +33,10 @@ const Header: React.FC = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleToggleTheme = () => {
+    setIsDark(!isDark);
   };
 
   return (
@@ -132,7 +141,9 @@ const Header: React.FC = () => {
             ))}
           </Box>
 
-          <Button>theme</Button>
+          <Button onClick={handleToggleTheme}>
+            {isDark ? <SunFill /> : <MoonStarsFill color="white" />}
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
