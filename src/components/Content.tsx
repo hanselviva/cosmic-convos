@@ -1,7 +1,7 @@
 import React from "react";
 
 const Content = () => {
-  return <div className="content-container"> this is a card content</div>;
+  return <div>Content</div>;
 };
 
 export default Content;
