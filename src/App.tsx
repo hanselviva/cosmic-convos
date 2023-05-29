@@ -12,8 +12,7 @@ const App: React.FC = () => {
 
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/universe" element={<Landing />} />
-        <Route path="/universe/:id" element={<Content />} />
+        <Route path="/:universeId" element={<Content />} />
       </Routes>
     </div>
   );

@@ -43,7 +43,7 @@ const Header: React.FC = () => {
   };
 
   const handleToggleTheme = () => {
-    console.log(activeTheme);
+    localStorage.setItem("isDark", isDark ? "false" : "true");
     setIsDark(!isDark);
   };
 
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
                 <MenuItem key={page.key} onClick={handleCloseNavMenu}>
                   <Typography
                     textAlign="center"
-                    onClick={() => navigate(`/universe/${page.key}`)}
+                    onClick={() => navigate(`/${page.key}`)}
                   >
                     {page.title}
                   </Typography>
@@ -133,7 +133,7 @@ const Header: React.FC = () => {
             {pages.map((page) => (
               <Link
                 key={page.key}
-                to={`/universe/${page.key}`}
+                to={`/${page.key}`}
                 style={{ textDecoration: "none" }}
               >
                 <Button

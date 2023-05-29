@@ -56,7 +56,9 @@ export const ThemeContext = createContext<ContextType>({
 });
 
 export const ThemeWrapper: React.FC = () => {
-  const [isDark, setIsDark] = useState<boolean>(true);
+  const storedTheme: boolean =
+    localStorage.getItem("isDark") == "true" ? true : false;
+  const [isDark, setIsDark] = useState<boolean>(storedTheme);
 
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>

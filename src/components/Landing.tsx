@@ -17,7 +17,7 @@ const Landing: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className="content-container">
-      <Typography variant="h3" component="h3" style={{ marginTop: "2rem" }}>
+      <Typography variant="h3" component="h1" style={{ marginTop: "2rem" }}>
         <span role="img">✨</span>Choose World
       </Typography>
 
@@ -36,14 +36,14 @@ const Landing: React.FC = () => {
                 >
                   <CardActionArea
                     onClick={() => {
-                      navigate(`/universe/${universe.id}`);
+                      navigate(`/${universe.id}`);
                     }}
                   >
                     <CardMedia
                       component="img"
                       height="400"
                       image={universe.data.featureImg}
-                      alt="green iguana"
+                      alt={universe.data.title}
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="div">
@@ -55,8 +55,14 @@ const Landing: React.FC = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      Share
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => {
+                        navigate(`/${universe.id}`);
+                      }}
+                    >
+                      Enter
                     </Button>
                   </CardActions>
                 </Card>
