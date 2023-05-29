@@ -11,7 +11,7 @@ import {
   Grid,
   useTheme,
 } from "@mui/material";
-import { universeData } from "./universe-data";
+import { universeData } from "./_universeData";
 import { useNavigate } from "react-router-dom";
 
 const AllUniverse: React.FC = () => {

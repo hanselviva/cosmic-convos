@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { universeData } from "./universe-data";
+import { universeData } from "./_universeData";
 import {
   Typography,
   Container,
