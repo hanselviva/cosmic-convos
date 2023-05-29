@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { universeData } from "./universe-data";
 import {
   Typography,
@@ -14,14 +14,13 @@ import {
 
 const UniversePage: React.FC = () => {
   const { universeId } = useParams();
+  const navigate = useNavigate();
+
   const { data } = universeData.filter(
     (universe) => universe.id == universeId
   )[0];
-  const activeTheme = useTheme();
 
-  useEffect(() => {
-    console.log("state reset");
-  });
+  const activeTheme = useTheme();
 
   return (
     <Container
@@ -69,7 +68,7 @@ const UniversePage: React.FC = () => {
                 >
                   <CardActionArea
                     onClick={() => {
-                      console.log();
+                      navigate(`/${universeId}/${char.id}`);
                     }}
                   >
                     <CardMedia

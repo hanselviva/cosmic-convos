@@ -71,9 +71,7 @@ export const ThemeWrapper: React.FC = () => {
 };
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ThemeWrapper />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <ThemeWrapper />
+  </BrowserRouter>
 );
