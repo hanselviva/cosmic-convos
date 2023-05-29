@@ -4,9 +4,9 @@ import { universeData } from "./universe-data";
 
 const Content: React.FC = () => {
   const { id } = useParams();
-  const data = universeData.filter((universe) => universe.id == id);
+  const { data } = universeData.filter((universe) => universe.id == id)[0];
 
-  return <div>{data[0].data.title}</div>;
+  return <div>{data.title}</div>;
 };
 
 export default Content;

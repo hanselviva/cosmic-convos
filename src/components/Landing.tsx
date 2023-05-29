@@ -25,7 +25,7 @@ const Landing: React.FC = () => {
         <Grid container>
           {universeData.map((universe) => {
             return (
-              <Grid key={universe.id} xs={12} sm={6} md={4}>
+              <Grid item key={universe.id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{
                     height: "auto",
@@ -45,7 +45,7 @@ const Landing: React.FC = () => {
                       image={universe.data.featureImg}
                       alt="green iguana"
                     />
-                    <CardContent sx={{ flexGrow: 1, height: "150px" }}>
+                    <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h5" component="div">
                         {universe.data.title}
                       </Typography>

@@ -21,7 +21,7 @@ export const universeData: Type[] = [
     data: {
       title: "Harry Potter",
       description:
-        "Embark on an immersive journey as you step into the captivating world of Harry Potter, where you can engage in conversations with its beloved characters.",
+        "Embark on an immersive journey as you step into the captivating world of Harry Potter, where you can engage in conversations with its beloved characters from Hogwarts.",
       featureImg: hpImg,
       characters: [
         "Harry Potter",

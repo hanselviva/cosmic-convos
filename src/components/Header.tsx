@@ -16,9 +16,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import universe from "../assets/universe.svg";
 import { SunFill, MoonStarsFill } from "react-bootstrap-icons";
 import { ThemeContext } from "../main";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UniverseIdType } from "../types/types";
 
-const pages = [
+const pages: { title: string; key: UniverseIdType }[] = [
   { title: "Harry Potter", key: "hp" },
   { title: "Lord of the Rings", key: "lotr" },
   { title: "Star Wars", key: "starwars" },
@@ -27,6 +28,7 @@ const pages = [
 const Header: React.FC = () => {
   const { isDark, setIsDark } = useContext(ThemeContext);
   const activeTheme = useTheme();
+  const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -50,7 +52,7 @@ const Header: React.FC = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Grid sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/">
               <img src={universe} height="150px" />
             </Link>
           </Grid>
@@ -103,43 +105,24 @@ const Header: React.FC = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page.key} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link
-                      to={`/universe/${page.key}`}
-                      style={{
-                        textDecoration: "none",
-                        color: activeTheme.palette.primary.light,
-                      }}
-                    >
-                      {page.title}
-                    </Link>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => navigate(`/universe/${page.key}`)}
+                  >
+                    {page.title}
                   </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          <Grid sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
-            <img src={universe} height="150px" />
-          </Grid>
-
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
+          <Grid
+            sx={{ display: { xs: "flex", md: "none" }, mr: 2, flexGrow: 1 }}
           >
-            Cosmic Conversations
-          </Typography>
+            <Link to="/">
+              <img src={universe} height="150px" />
+            </Link>
+          </Grid>
 
           <Box
             sx={{
