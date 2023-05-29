@@ -11,17 +11,22 @@ import {
   MenuItem,
   Grid,
 } from "@mui/material";
-// import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import universe from "../assets/universe.svg";
 import { SunFill, MoonStarsFill } from "react-bootstrap-icons";
 import { ThemeContext } from "../main";
+import { Link } from "react-router-dom";
 
-const pages = ["Harry Potter", "Lord of the Rings", "Star Wars"];
+const pages = [
+  { title: "Harry Potter", key: "hp" },
+  { title: "Lord of the Rings", key: "lotr" },
+  { title: "Star Wars", key: "starwars" },
+];
 
 const Header: React.FC = () => {
   const { isDark, setIsDark } = useContext(ThemeContext);
-  //   const activeTheme = useTheme();
+  const activeTheme = useTheme();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -36,6 +41,7 @@ const Header: React.FC = () => {
   };
 
   const handleToggleTheme = () => {
+    console.log(activeTheme);
     setIsDark(!isDark);
   };
 
@@ -44,14 +50,15 @@ const Header: React.FC = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Grid sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-            <img src={universe} height="150px" />
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <img src={universe} height="150px" />
+            </Link>
           </Grid>
 
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -95,8 +102,18 @@ const Header: React.FC = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.key} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link
+                      to={`/universe/${page.key}`}
+                      style={{
+                        textDecoration: "none",
+                        color: activeTheme.palette.primary.light,
+                      }}
+                    >
+                      {page.title}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -110,7 +127,6 @@ const Header: React.FC = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -124,6 +140,7 @@ const Header: React.FC = () => {
           >
             Cosmic Conversations
           </Typography>
+
           <Box
             sx={{
               flexGrow: 1,
@@ -131,18 +148,32 @@ const Header: React.FC = () => {
             }}
           >
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+              <Link
+                key={page.key}
+                to={`/universe/${page.key}`}
+                style={{ textDecoration: "none" }}
               >
-                {page}
-              </Button>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page.title}
+                </Button>
+              </Link>
             ))}
           </Box>
 
-          <Button onClick={handleToggleTheme}>
-            {isDark ? <SunFill /> : <MoonStarsFill color="white" />}
+          <Button
+            onClick={handleToggleTheme}
+            style={{
+              border: `1px solid gray`,
+            }}
+          >
+            {isDark ? (
+              <SunFill color={activeTheme.palette.primary.main} />
+            ) : (
+              <MoonStarsFill color={activeTheme.palette.primary.contrastText} />
+            )}
           </Button>
         </Toolbar>
       </Container>

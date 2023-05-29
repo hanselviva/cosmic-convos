@@ -5,6 +5,8 @@ import "./index.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeOptions, ThemeProvider, createTheme } from "@mui/material/styles";
 
+import { BrowserRouter } from "react-router-dom";
+
 const lightTheme: ThemeOptions = createTheme({
   palette: {
     mode: "light",
@@ -43,6 +45,7 @@ const darkTheme: ThemeOptions = createTheme({
 
 interface ContextType {
   isDark: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setIsDark: any;
 }
 
@@ -56,18 +59,19 @@ export const ThemeWrapper: React.FC = () => {
   const [isDark, setIsDark] = useState<boolean>(true);
 
   return (
-    <>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <ThemeContext.Provider value={{ isDark, setIsDark }}>
         <CssBaseline />
-        <ThemeContext.Provider value={{ isDark, setIsDark }}>
-          <App />
-        </ThemeContext.Provider>
-      </ThemeProvider>
-    </>
+        <App />
+      </ThemeContext.Provider>
+    </ThemeProvider>
   );
 };
 
-const container = document.getElementById("root");
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const root = ReactDOM.createRoot(container!);
-root.render(<ThemeWrapper />);
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <ThemeWrapper />
+    </BrowserRouter>
+  </React.StrictMode>
+);
