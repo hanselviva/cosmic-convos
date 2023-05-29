@@ -5,6 +5,7 @@ import swImg from "../assets/starwars.jpg";
 export interface UniverseDataType {
   title: string;
   description: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   featureImg: any;
   characters: string[];
 }
@@ -20,7 +21,7 @@ export const universeData: Type[] = [
     data: {
       title: "Harry Potter",
       description:
-        "Immerse yourself in the magical world of Harry Potter, where you can engage in enchanting conversations with beloved characters, attend Hogwarts, and uncover the secrets of the wizarding world.",
+        "Embark on an immersive journey as you step into the captivating world of Harry Potter, where you can engage in conversations with its beloved characters.",
       featureImg: hpImg,
       characters: [
         "Harry Potter",
@@ -36,7 +37,7 @@ export const universeData: Type[] = [
     data: {
       title: "Lord of the Rings",
       description:
-        "Embark on an epic journey through Middle-earth, interacting with iconic characters, exploring breathtaking landscapes, and experiencing the rich lore of this fantastical universe.",
+        "Prepare to be transported to the enchanting realm of Middle-earth, where you can converse with legendary beings and immerse yourself in the rich tapestry of Tolkien's creation.",
       featureImg: lotrImg,
       characters: [
         "Frodo Baggins",
@@ -53,7 +54,7 @@ export const universeData: Type[] = [
     data: {
       title: "Star Wars",
       description:
-        "Enter the expansive Star Wars universe, where you can engage in intergalactic conversations, align with the light or dark side of the Force, and shape the destiny of a galaxy torn by epic conflicts and captivating characters.",
+        "Enter the epic universe of Star Wars, where you can interact with iconic characters and explore the timeless battle between the light and dark sides of the Force.",
       featureImg: swImg,
       characters: [
         "Luke Skywalker",
