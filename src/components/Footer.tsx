@@ -1,11 +1,13 @@
-import { Box, Link, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   return (
     <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
       <Typography variant="h6" align="center" gutterBottom>
-        Footer
+        <span role="img">✨</span> Cosmic Conversations
+        <span role="img">✨</span>
       </Typography>
       <Typography
         variant="subtitle1"
@@ -13,12 +15,17 @@ const Footer: React.FC = () => {
         color="text.secondary"
         component="p"
       >
-        Something here to give the footer a purpose!
+        Journey Through Universes, One Conversation at a Time.
       </Typography>
       <Typography variant="body2" color="text.secondary" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="/">
-          Your Website
+        <Link
+          to={{
+            pathname: "https://hansel.xyz",
+          }}
+          target="_blank"
+        >
+          HanselV
         </Link>{" "}
         {new Date().getFullYear()}
         {"."}

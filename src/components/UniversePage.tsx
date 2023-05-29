@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-const Content: React.FC = () => {
+const UniversePage: React.FC = () => {
   const { universeId } = useParams();
   const { data } = universeData.filter(
     (universe) => universe.id == universeId
@@ -94,4 +94,4 @@ const Content: React.FC = () => {
   );
 };
 
-export default Content;
+export default UniversePage;

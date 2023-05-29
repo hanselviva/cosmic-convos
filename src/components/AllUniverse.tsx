@@ -14,7 +14,7 @@ import {
 import { universeData } from "./universe-data";
 import { useNavigate } from "react-router-dom";
 
-const Landing: React.FC = () => {
+const AllUniverse: React.FC = () => {
   const navigate = useNavigate();
   const activeTheme = useTheme();
   return (
@@ -78,4 +78,4 @@ const Landing: React.FC = () => {
   );
 };
 
-export default Landing;
+export default AllUniverse;

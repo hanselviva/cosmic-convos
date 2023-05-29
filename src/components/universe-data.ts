@@ -23,6 +23,7 @@ import yoda from "../assets/avatars/starwars/yoda.png";
 interface CharactersType {
   name: string;
   id: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   avatar: any;
 }
 export interface UniverseDataType {
