@@ -9,12 +9,14 @@ import {
   CardActions,
   Container,
   Grid,
+  useTheme,
 } from "@mui/material";
 import { universeData } from "./universe-data";
 import { useNavigate } from "react-router-dom";
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
+  const activeTheme = useTheme();
   return (
     <div className="content-container">
       <Typography variant="h3" component="h1" style={{ marginTop: "2rem" }}>
@@ -32,6 +34,7 @@ const Landing: React.FC = () => {
                     display: "flex",
                     flexDirection: "column",
                     margin: "1.5rem",
+                    border: `2px solid ${activeTheme.palette.primary.main}`,
                   }}
                 >
                   <CardActionArea
@@ -41,7 +44,7 @@ const Landing: React.FC = () => {
                   >
                     <CardMedia
                       component="img"
-                      height="400"
+                      height="300"
                       image={universe.data.featureImg}
                       alt={universe.data.title}
                     />

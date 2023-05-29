@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { universeData } from "./universe-data";
 import {
@@ -9,6 +9,7 @@ import {
   CardActionArea,
   CardMedia,
   CardContent,
+  useTheme,
 } from "@mui/material";
 
 const Content: React.FC = () => {
@@ -16,6 +17,11 @@ const Content: React.FC = () => {
   const { data } = universeData.filter(
     (universe) => universe.id == universeId
   )[0];
+  const activeTheme = useTheme();
+
+  useEffect(() => {
+    console.log("state reset");
+  });
 
   return (
     <Container
@@ -47,7 +53,7 @@ const Content: React.FC = () => {
         Choose Character to Converse
       </Typography>
 
-      <Container sx={{ py: 8 }} maxWidth="lg">
+      <Container sx={{ py: 8 }} maxWidth="md">
         <Grid container>
           {data.characters.map((char) => {
             return (
@@ -58,6 +64,7 @@ const Content: React.FC = () => {
                     display: "flex",
                     flexDirection: "column",
                     margin: "1.5rem",
+                    border: `2px solid ${activeTheme.palette.primary.main}`,
                   }}
                 >
                   <CardActionArea
@@ -67,8 +74,8 @@ const Content: React.FC = () => {
                   >
                     <CardMedia
                       component="img"
-                      height="150"
-                      //   image={}
+                      height="200"
+                      image={char.avatar}
                       alt={char.name}
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
