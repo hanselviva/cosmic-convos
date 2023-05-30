@@ -146,17 +146,8 @@ const Header: React.FC = () => {
             ))}
           </Box>
 
-          <Button
-            onClick={handleToggleTheme}
-            style={{
-              border: `1px solid gray`,
-            }}
-          >
-            {isDark ? (
-              <SunFill color={activeTheme.palette.primary.main} />
-            ) : (
-              <MoonStarsFill color={activeTheme.palette.primary.contrastText} />
-            )}
+          <Button onClick={handleToggleTheme} variant="contained">
+            {isDark ? <SunFill /> : <MoonStarsFill />}
           </Button>
         </Toolbar>
       </Container>
