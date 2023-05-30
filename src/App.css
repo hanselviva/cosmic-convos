@@ -12,6 +12,7 @@
 }
 .conversation-container {
   height: 350px;
+  overflow-y: auto;
 }
 .user-input-container {
   display: flex;

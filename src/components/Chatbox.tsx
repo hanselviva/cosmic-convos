@@ -30,20 +30,21 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
     setMessages((oldMsgs) => [...oldMsgs, newMsg]);
   };
 
-  const logging = () => console.log(messages);
-
   const handleSubmit = async () => {
+    setUserMessage(initUserMessage);
+
     //append the user input to messages array
     appendNewMsg(userMessage);
 
     //create a copy of the new arr and send the request
     const newArray = [...messages, userMessage];
+    setIsFetching(true);
     const newResponse = await sendReq(newArray);
 
-    //append the new response
+    //append the new response to messages array
     appendNewMsg(newResponse.data.choices[0].message);
 
-    setUserMessage(initUserMessage);
+    setIsFetching(false);
   };
 
   const sendReq = async (messages: ChatCompletionRequestMessage[]) => {
@@ -56,7 +57,6 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
 
   return (
     <div className="chatbox-container">
-      <button onClick={logging}>log</button>
       <>
         <img height="100px" width="100px" src={avatar} />
       </>
@@ -87,7 +87,11 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
             setUserMessage({ role: "user", content: event.target.value });
           }}
         />
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          disabled={isFetching}
+        >
           Send
         </Button>
       </div>
