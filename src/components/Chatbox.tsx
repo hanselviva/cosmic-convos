@@ -39,6 +39,7 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
     //create a copy of the new arr and send the request
     const newArray = [...messages, userMessage];
     setIsFetching(true);
+    // @ts-expect-error todo:fix typings of gpt APIs
     const newResponse = await sendReq(newArray);
 
     //append the new response to messages array

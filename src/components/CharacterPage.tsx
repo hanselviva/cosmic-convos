@@ -25,6 +25,7 @@ const CharacterPage: React.FC = () => {
           border: `1px solid ${activeTheme.palette.primary.dark}`,
         }}
         maxWidth="sm"
+        key={id}
       >
         <Chatbox character={name} universe={universe.title} avatar={avatar} />
       </Container>

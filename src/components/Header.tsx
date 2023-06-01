@@ -11,7 +11,6 @@ import {
   MenuItem,
   Grid,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import universe from "../assets/universe.svg";
 import { SunFill, MoonStarsFill } from "react-bootstrap-icons";
