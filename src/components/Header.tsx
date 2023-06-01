@@ -17,9 +17,9 @@ import universe from "../assets/universe.svg";
 import { SunFill, MoonStarsFill } from "react-bootstrap-icons";
 import { ThemeContext } from "../main";
 import { Link, useNavigate } from "react-router-dom";
-import { UniverseIdType } from "../types/types";
+import { UniverseIdType } from "../types";
 
-const pages: { title: string; key: UniverseIdType }[] = [
+const pages: UniverseIdType[] = [
   { title: "Harry Potter", key: "hp" },
   { title: "Lord of the Rings", key: "lotr" },
   { title: "Star Wars", key: "starwars" },
@@ -27,7 +27,6 @@ const pages: { title: string; key: UniverseIdType }[] = [
 
 const Header: React.FC = () => {
   const { isDark, setIsDark } = useContext(ThemeContext);
-  const activeTheme = useTheme();
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -69,7 +68,9 @@ const Header: React.FC = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
             Cosmic Conversations
           </Typography>
@@ -138,7 +139,11 @@ const Header: React.FC = () => {
               >
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                  }}
                 >
                   {page.title}
                 </Button>

@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeOptions, ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { BrowserRouter } from "react-router-dom";
+import ScrollToTop from "./utils/index.ts";
 
 const lightTheme: ThemeOptions = createTheme({
   palette: {
@@ -57,7 +58,7 @@ export const ThemeContext = createContext<ContextType>({
 
 export const ThemeWrapper: React.FC = () => {
   const storedTheme: boolean =
-    localStorage.getItem("isDark") == "true" ? true : false;
+    localStorage.getItem("isDark") == "false" ? false : true;
   const [isDark, setIsDark] = useState<boolean>(storedTheme);
 
   return (
@@ -72,6 +73,7 @@ export const ThemeWrapper: React.FC = () => {
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
+    <ScrollToTop />
     <ThemeWrapper />
   </BrowserRouter>
 );

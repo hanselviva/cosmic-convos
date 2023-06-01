@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
+  const activeTheme = useTheme();
   return (
     <Box
       sx={{ bgcolor: "background.paper", p: 3, marginTop: 14 }}
@@ -27,9 +28,11 @@ const Footer: React.FC = () => {
             pathname: "https://hansel.xyz",
           }}
           target="_blank"
+          style={{ color: activeTheme.palette.primary.dark }}
         >
           HanselV
-        </Link>{" "}
+        </Link>
+        {` `}
         {new Date().getFullYear()}
         {"."}
       </Typography>
