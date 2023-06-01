@@ -5,17 +5,22 @@
 }
 
 .chatbox-container {
-  height: 520px;
+  height: 575px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.conversation-container {
+.convo-container {
   height: 350px;
   overflow-y: auto;
 }
-.user-input-container {
+.user-input {
   display: flex;
   flex-direction: row;
+  margin-top: 30px;
   /* align-items: center; */
+}
+.user-message {
+}
+.assistant-message {
 }

@@ -20,7 +20,7 @@ const CharacterPage: React.FC = () => {
 
       <Container
         sx={{
-          py: 8,
+          py: 2,
           height: "600px",
           border: `1px solid ${activeTheme.palette.primary.dark}`,
         }}
