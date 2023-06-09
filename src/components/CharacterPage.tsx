@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { universeData } from "./_universeData";
-import { Container, Typography, useTheme } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Chatbox from "./Chatbox";
 
 const CharacterPage: React.FC = () => {
@@ -10,19 +10,17 @@ const CharacterPage: React.FC = () => {
   const { name, id, avatar } = universe.characters.filter(
     (char) => char.id == characterId
   )[0];
-  const activeTheme = useTheme();
 
   return (
     <div className="content-container">
-      <Typography variant="h4" component="h1" style={{ marginTop: "2rem" }}>
-        Chat with {name}
+      <Typography variant="h4" component="h1" sx={{ my: "2rem" }}>
+        <img height="75px" width="75px" src={avatar} /> Chat with {name}
       </Typography>
 
       <Container
         sx={{
           py: 2,
           height: "600px",
-          border: `1px solid ${activeTheme.palette.primary.dark}`,
         }}
         maxWidth="sm"
         key={id}

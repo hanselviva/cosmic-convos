@@ -15,30 +15,26 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 const initUserMessage = { role: "user", content: "" };
 
-const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
+const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
   const activeTheme = useTheme();
   const [userMessage, setUserMessage] = useState(initUserMessage);
   const [isFetching, setIsFetching] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: "system",
-      content: `We are role-playing. You are ${character} from ${universe} and you're gonna respond to the prompts without breaking character.`,
+      content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
     },
     {
       role: "user",
-      content: `Hello ${character} from ${universe}. How are you?`,
+      content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
     },
     {
       role: "assistant",
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+      content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
     },
     {
       role: "user",
-      content: `We are role-playing. You are ${character} from ${universe} and you're gonna respond to the prompts without breaking character.`,
-    },
-    {
-      role: "assistant",
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+      content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
     },
   ]);
 
@@ -65,6 +61,13 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
     setIsFetching(false);
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   const sendReq = async (messages: ChatCompletionRequestMessage[]) => {
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -75,10 +78,6 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
 
   return (
     <div className="chatbox-container">
-      <Container sx={{ pb: 2 }}>
-        <img height="100px" width="100px" src={avatar} />
-      </Container>
-
       <div className="convo-container">
         {messages.map((message, i) => {
           return (
@@ -87,12 +86,13 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
                 <Box
                   className="user-message"
                   sx={{
-                    border: `2px solid ${activeTheme.palette.secondary.dark}`,
+                    background: activeTheme.palette.primary.light,
                     borderRadius: "15px 15px 0 15px",
                     px: 2,
                     py: 0.5,
                     my: 0.5,
                     marginLeft: 10,
+                    color: "black",
                   }}
                 >
                   {message.content}
@@ -103,12 +103,13 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
                 <Box
                   className="assistant-message"
                   sx={{
-                    border: `2px solid ${activeTheme.palette.secondary.light}`,
+                    background: activeTheme.palette.primary.main,
                     borderRadius: "0 15px 15px 15px",
                     px: 2,
                     py: 0.5,
                     my: 2,
                     marginRight: 10,
+                    color: "black",
                   }}
                 >
                   {message.content}
@@ -119,7 +120,7 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
         })}
       </div>
 
-      <div className="user-input">
+      <form onSubmit={handleSubmit} className="user-input">
         <TextField
           sx={{ marginRight: "5px" }}
           fullWidth
@@ -131,15 +132,17 @@ const Chatbox: React.FC<PropsType> = ({ universe, character, avatar }) => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setUserMessage({ role: "user", content: event.target.value });
           }}
+          onKeyPress={handleKeyPress}
         />
         <Button
+          type="submit"
           variant="contained"
           onClick={handleSubmit}
           disabled={isFetching}
         >
           Send
         </Button>
-      </div>
+      </form>
     </div>
   );
 };
