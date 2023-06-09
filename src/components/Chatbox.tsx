@@ -26,13 +26,15 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
   const activeTheme = useTheme();
   const [userMessage, setUserMessage] = useState(initUserMessage);
   const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState(true);
-  const [messages, setMessages] = useState([
+  const [error, setError] = useState(false);
+
+  const initMessages = [
     {
       role: "system",
       content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
     },
-  ]);
+  ];
+  const [messages, setMessages] = useState(initMessages);
 
   //callback for appending new message (both user & assistant)
   const appendNewMsg = (newMsg: any) => {
@@ -73,6 +75,7 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
     if (response) {
       return response;
     } else {
+      setMessages(initMessages);
       setError(true);
     }
   };
