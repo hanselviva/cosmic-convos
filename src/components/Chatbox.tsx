@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
-import { Box, Button, Container, TextField, useTheme } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Container,
+  TextField,
+  useTheme,
+} from "@mui/material";
 
 interface PropsType {
   universe: string;
@@ -19,6 +26,7 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
   const activeTheme = useTheme();
   const [userMessage, setUserMessage] = useState(initUserMessage);
   const [isFetching, setIsFetching] = useState(false);
+  const [error, setError] = useState(true);
   const [messages, setMessages] = useState([
     {
       role: "system",
@@ -44,7 +52,7 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
     const newResponse = await sendReq(newArray);
 
     //append the new response to messages array
-    appendNewMsg(newResponse.data.choices[0].message);
+    appendNewMsg(newResponse?.data.choices[0].message);
 
     setIsFetching(false);
   };
@@ -61,12 +69,24 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
       model: "gpt-3.5-turbo",
       messages: messages,
     });
-    return response;
+
+    if (response) {
+      return response;
+    } else {
+      setError(true);
+    }
   };
 
   return (
     <div className="chatbox-container">
       <div className="convo-container">
+        {error && (
+          <Alert severity="error">
+            Sorry, something went wrong with ChatGPT. Please reload and try
+            again.!
+          </Alert>
+        )}
+
         {messages.map((message, i) => {
           return (
             <Container key={i}>
