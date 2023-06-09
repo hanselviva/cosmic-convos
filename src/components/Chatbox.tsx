@@ -24,18 +24,6 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
       role: "system",
       content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
     },
-    {
-      role: "user",
-      content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
-    },
-    {
-      role: "assistant",
-      content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
-    },
-    {
-      role: "user",
-      content: `We are roleplaying. You are ${character} from ${universe} universe. Stay true to ${character}'s character and never break the persona.`,
-    },
   ]);
 
   //callback for appending new message (both user & assistant)
@@ -118,6 +106,23 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
             </Container>
           );
         })}
+
+        {isFetching && (
+          <Box
+            className="assistant-message"
+            sx={{
+              background: activeTheme.palette.primary.main,
+              borderRadius: "0 15px 15px 15px",
+              px: 2,
+              py: 0.5,
+              my: 2,
+              marginRight: 10,
+              color: "black",
+            }}
+          >
+            ...
+          </Box>
+        )}
       </div>
 
       <form onSubmit={handleSubmit} className="user-input">
