@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { universeData } from "./_universeData";
 import {
@@ -15,12 +15,18 @@ import {
 const UniversePage: React.FC = () => {
   const { universeId } = useParams();
   const navigate = useNavigate();
+  const divRef = useRef<HTMLDivElement>(null);
 
   const { data } = universeData.filter(
     (universe) => universe.id == universeId
   )[0];
 
   const activeTheme = useTheme();
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [universeId]);
 
   return (
     <Container
@@ -48,7 +54,12 @@ const UniversePage: React.FC = () => {
       >
         {data.description}
       </Typography>
-      <Typography variant="h5" component="h2" style={{ marginTop: "2rem" }}>
+      <Typography
+        variant="h5"
+        component="h2"
+        style={{ marginTop: "2rem" }}
+        ref={divRef}
+      >
         Choose Character to Converse
       </Typography>
 
