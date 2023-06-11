@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 import {
   Alert,
@@ -23,6 +23,7 @@ const openai = new OpenAIApi(configuration);
 const initUserMessage = { role: "user", content: "" };
 
 const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
+  const newMessageRef = useRef<HTMLDivElement>(null);
   const activeTheme = useTheme();
   const [userMessage, setUserMessage] = useState(initUserMessage);
   const [isFetching, setIsFetching] = useState(false);
@@ -35,6 +36,10 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
     },
   ];
   const [messages, setMessages] = useState(initMessages);
+
+  useEffect(() => {
+    newMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   //callback for appending new message (both user & assistant)
   const appendNewMsg = (newMsg: any) => {
@@ -93,6 +98,8 @@ const Chatbox: React.FC<PropsType> = ({ universe, character }) => {
         {messages.map((message, i) => {
           return (
             <Container key={i}>
+              <div ref={newMessageRef} />
+
               {message.role == "user" && (
                 <Box
                   className="user-message"

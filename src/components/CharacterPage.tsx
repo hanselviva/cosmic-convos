@@ -28,6 +28,7 @@ const CharacterPage: React.FC = () => {
         sx={{
           py: 2,
           height: "600px",
+          mb: 4,
         }}
         maxWidth="sm"
         key={id}

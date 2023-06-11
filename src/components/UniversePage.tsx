@@ -54,16 +54,11 @@ const UniversePage: React.FC = () => {
       >
         {data.description}
       </Typography>
-      <Typography
-        variant="h5"
-        component="h2"
-        style={{ marginTop: "2rem" }}
-        ref={divRef}
-      >
+      <Typography variant="h5" component="h2" style={{ marginTop: "2rem" }}>
         Choose Character to Converse
       </Typography>
 
-      <Container sx={{ py: 8 }} maxWidth="md">
+      <Container sx={{ py: 8 }} maxWidth="md" ref={divRef}>
         <Grid container>
           {data.characters.map((char) => {
             return (
