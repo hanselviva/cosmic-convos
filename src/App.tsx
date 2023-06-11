@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import UniversePage from "./components/UniversePage";
 import AllUniverse from "./components/AllUniverse";
-import Footer from "./components/Footer";
 import CharacterPage from "./components/CharacterPage";
 
 const App: React.FC = () => {
@@ -17,7 +16,6 @@ const App: React.FC = () => {
         <Route path="/:universeId" element={<UniversePage />} />
         <Route path="/:universeId/:characterId" element={<CharacterPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 };

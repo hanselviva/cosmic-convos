@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { universeData } from "./_universeData";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const AllUniverse: React.FC = () => {
   const navigate = useNavigate();
@@ -74,6 +75,7 @@ const AllUniverse: React.FC = () => {
           })}
         </Grid>
       </Container>
+      <Footer />
     </div>
   );
 };
